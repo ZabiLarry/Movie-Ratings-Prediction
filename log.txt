@@ -1,0 +1,45 @@
+MODEL LOGS
+MIN_MOVIES = 10,  MIN_PEOPLE = 10
+ MAE XGB: 0.6652455982642914
+ n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5 (with nulls)
+MIN_MOVIES = 10,  MIN_PEOPLE = 10
+ MAE RFR: 0.686010248799127
+ n_estimators=100 random_state=0
+ MAE XGB: 0.6714106642007199
+ n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5 (without nulls)
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 (without people)
+ MAE KNN: 0.7243222114066893
+ n_estimators=100 random_state=0
+MIN_MOVIES = 10,  MIN_PEOPLE = 10
+ MAE DTR: 0.8848514155090559
+ random_state=0
+ENCODED, ARTISTS NOT IMPUTED
+ MAE SVR: 0.7125356126250345
+ kernel=linear
+MIN_MOVIES = 10,  MIN_PEOPLE = 10
+ MAE ANN: 0.6867117622688069
+ epochs=100
+ MAE SVR: 0.6871999778732311
+ kernel=linear
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=True
+ MAE RFR: 0.686010248799127
+ n_estimators=100
+ MAE XGB: 0.6714106642007199
+ n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5
+ MAE KNN: 0.8197081062071392
+ n_neighbors=5
+ MAE DTR: 0.8848514155090559
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.6947198660714287
+ n_estimators=100
+ MAE XGB: 0.6731869257986546
+ n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5
+ MAE KNN: 0.8174851190476189
+ n_neighbors=5
+ MAE DTR: 0.881845238095238
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.7212150575310233
+ n_estimators=1000
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.7212150575310233
+ n_estimators=1000

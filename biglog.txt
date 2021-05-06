@@ -1,0 +1,138 @@
+C:\Users\inaki\Python\python.exe "C:/Users/inaki/IdeaProjects/Movie Rating Prediction/BigRun.py"
+Categorical variables:[]
+MIN_MOVIES = 10,  MIN_PEOPLE = 10
+XGBRegressor started
+MAE XGB: 0.6931941332206839
+n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5
+Ridge Regressionstarted
+MAE scores:
+ [0.69780826 0.71053545 0.71047218 0.67724003 0.67333658]
+Average: 0.6938785020014506
+Lasso Regressionstarted
+MAE scores:
+ [0.73405151 0.73732726 0.748933   0.70625168 0.7060773 ]
+Average: 0.7265281486385211
+KNNeighborstarted
+MAE scores:
+ [0.8615625  0.86909226 0.87297619 0.83834821 0.81748512]
+Average: 0.8518928571428571
+Decision Tree Regressor started
+MAE scores:
+ [0.90829613 0.9374256  0.93143601 0.89702381 0.88184524]
+Average: 0.9112053571428571
+Random Forest Regressor started
+MAE scores:
+ [0.71358281 0.71919472 0.72352911 0.69996935 0.69471987]
+Average: 0.7101991702097505
+
+UNSHUFFLED
+Ridge Regression started
+MAE scores:
+ [0.90974668 0.71514131 0.70825473 0.68138801 0.71806185]
+Average: 0.7465185171928843
+
+
+C:\Users\inaki\Python\python.exe "C:/Users/inaki/IdeaProjects/Movie Rating Prediction/Main.py"
+regions and genres encoded
+started adding people
+people added
+Categorical variables:['primaryTitle']
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+Random Forest Regressor started
+MAE RFR: 0.7212150575310233
+n_estimators=1000
+Variable: runtimeMinutes       Importance: 0.2168
+Variable: startYear            Importance: 0.1717
+Variable: Horror               Importance: 0.0987
+Variable: Documentary          Importance: 0.0447
+Variable: Drama                Importance: 0.0393
+Variable: Action               Importance: 0.0225
+Variable: Comedy               Importance: 0.0191
+Variable: Animation            Importance: 0.0168
+Variable: Crime                Importance: 0.0159
+Variable: US                   Importance: 0.0149
+Variable: Thriller             Importance: 0.0142
+Variable: Romance              Importance: 0.0141
+Variable: RU                   Importance: 0.0141
+Variable: Adventure            Importance: 0.013
+Variable: GB                   Importance: 0.0125
+Variable: Fantasy              Importance: 0.0114
+Variable: Sci-Fi               Importance: 0.0113
+Variable: IN                   Importance: 0.0113
+Variable: DE                   Importance: 0.0095
+Variable: Mystery              Importance: 0.0093
+Variable: CA                   Importance: 0.0093
+Variable: BR                   Importance: 0.009
+Variable: JP                   Importance: 0.009
+Variable: ES                   Importance: 0.0089
+Variable: XWW                  Importance: 0.0084
+Variable: FR                   Importance: 0.0083
+Variable: Family               Importance: 0.0079
+Variable: AU                   Importance: 0.0075
+Variable: GR                   Importance: 0.0072
+Variable: Music                Importance: 0.0067
+Variable: HU                   Importance: 0.0067
+Variable: IT                   Importance: 0.0065
+Variable: PL                   Importance: 0.0064
+Variable: TR                   Importance: 0.0064
+Variable: FI                   Importance: 0.0059
+Variable: Musical              Importance: 0.0052
+Variable: Biography            Importance: 0.005
+Variable: War                  Importance: 0.005
+Variable: Sport                Importance: 0.0049
+Variable: MX                   Importance: 0.0048
+Variable: RS                   Importance: 0.0047
+Variable: History              Importance: 0.0046
+Variable: UA                   Importance: 0.0045
+Variable: PT                   Importance: 0.0042
+Variable: AR                   Importance: 0.0041
+Variable: SE                   Importance: 0.0041
+Variable: BG                   Importance: 0.0039
+Variable: RO                   Importance: 0.0036
+Variable: LT                   Importance: 0.0032
+Variable: DK                   Importance: 0.0026
+Variable: TW                   Importance: 0.0023
+Variable: HR                   Importance: 0.0022
+Variable: SUHH                 Importance: 0.0021
+Variable: NO                   Importance: 0.002
+Variable: IE                   Importance: 0.0019
+Variable: AT                   Importance: 0.0018
+Variable: XWG                  Importance: 0.0018
+Variable: CN                   Importance: 0.0016
+Variable: CZ                   Importance: 0.0014
+Variable: NL                   Importance: 0.0014
+Variable: SK                   Importance: 0.0014
+Variable: CH                   Importance: 0.0012
+Variable: Western              Importance: 0.0011
+Variable: HK                   Importance: 0.0011
+Variable: IR                   Importance: 0.0011
+Variable: PE                   Importance: 0.0011
+Variable: SI                   Importance: 0.0011
+Variable: UY                   Importance: 0.0011
+Variable: BE                   Importance: 0.0008
+Variable: EE                   Importance: 0.0008
+Variable: IL                   Importance: 0.0008
+Variable: BD                   Importance: 0.0007
+Variable: CL                   Importance: 0.0007
+Variable: CO                   Importance: 0.0007
+Variable: LV                   Importance: 0.0007
+Variable: uncommonRegion       Importance: 0.0007
+Variable: BA                   Importance: 0.0006
+Variable: KR                   Importance: 0.0006
+Variable: NZ                   Importance: 0.0006
+Variable: VN                   Importance: 0.0006
+Variable: VE                   Importance: 0.0005
+Variable: XEU                  Importance: 0.0005
+Variable: XYU                  Importance: 0.0005
+Variable: EG                   Importance: 0.0004
+Variable: GE                   Importance: 0.0004
+Variable: PH                   Importance: 0.0004
+Variable: TH                   Importance: 0.0004
+Variable: UZ                   Importance: 0.0004
+Variable: DDDE                 Importance: 0.0003
+Variable: CSHH                 Importance: 0.0002
+Variable: PK                   Importance: 0.0002
+Variable: News                 Importance: 0.0001
+Variable: IS                   Importance: 0.0001
+Variable: SG                   Importance: 0.0001
+
