@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 
 os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -53,12 +54,12 @@ def get_scores(df):
     RFR_model = RandomForestRegressor(n_estimators=n_estimators, random_state=random_state)
 
     models.append(RR_model)
-    models.append(LR_model)
-    models.append(KNN_model)
-    models.append(DTR_model)
-    models.append(RFR_model)
-    score_dataset_XGB(X, y)
-    score_dataset_ANN(X, y)
+    # models.append(LR_model)
+    # models.append(KNN_model)
+    # models.append(DTR_model)
+    # models.append(RFR_model)
+    # score_dataset_XGB(X, y)
+    # score_dataset_ANN(X, y)
 
     i = 0
     for model in models:
@@ -67,7 +68,7 @@ def get_scores(df):
         scores = -1 * cross_val_score(pipeline, X, y,
                                       cv=5,
                                       scoring='neg_mean_absolute_error',
-                                      n_jobs=5)
+                                      n_jobs=5, verbose=True)
         i += 1
         print("MAE scores:\n", scores)
         print("Average: " + str(scores.mean()))
@@ -80,15 +81,23 @@ def score_dataset_XGB(X, y):
     print("XGBRegressor started")
     n_estimators = 1000
     learning_rate = 0.05
-    n_jobs = 4
     early_stopping_rounds = 5
-    my_model = XGBRegressor(n_estimators=n_estimators, learning_rate=learning_rate, n_jobs=n_jobs)
-    my_model.fit(X_train, y_train, early_stopping_rounds=early_stopping_rounds, eval_set=[(X_valid, y_valid)])
-    preds = my_model.predict(X_valid)
-    print("MAE XGB: " + str(mean_absolute_error(y_valid, preds)))
+    model = XGBRegressor(n_estimators=n_estimators, learning_rate=learning_rate, n_jobs=5)
+    # model.fit(X_train, y_train, early_stopping_rounds=early_stopping_rounds, eval_set=[(X_valid, y_valid)], verbose=False)
+    fit_params = {'early_stopping_rounds': 5,
+                  'eval_metric': 'mae',
+                  'verbose': False,
+                  'eval_set': [[X_valid, y_valid]]}
+
+    scores = cross_val_score(model, X_train, y_train,
+                             cv=5,
+                             scoring='neg_mean_absolute_error',
+                             fit_params=fit_params)
+    print("MAE scores:\n", scores)
+    print("Average: " + str(scores.mean()))
     print(
-        "n_estimators=" + str(n_estimators) + ", learning_rate=" + str(learning_rate) + ", n_jobs=" + str(
-            n_jobs) + ", early_stopping_rounds=" + str(early_stopping_rounds))
+        "n_estimators=" + str(n_estimators) + ", learning_rate=" + str(
+            learning_rate) + ", early_stopping_rounds=" + str(early_stopping_rounds))
 
 
 #   ARTIFICIAL NEURAL NETWORK

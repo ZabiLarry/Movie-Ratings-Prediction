@@ -40,6 +40,403 @@ MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
 MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
  MAE RFR: 0.7212150575310233
  n_estimators=1000
+
 MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
- MAE RFR: 0.7212150575310233
- n_estimators=1000
+ MAE RFR: 0.7307408517336951
+ n_estimators=50
+ MAE RFR: 0.725889037585024
+ n_estimators=100
+ MAE RFR: 0.7245645915729089
+ n_estimators=150
+ MAE RFR: 0.7239394486450579
+ n_estimators=200
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.7307408517336951
+ n_estimators=50
+ MAE RFR: 0.7258890375850241
+ n_estimators=100
+ MAE RFR: 0.7245645915729089
+ n_estimators=150
+ MAE RFR: 0.7239394486450579
+ n_estimators=200
+ MAE RFR: 0.7225176199407729
+ n_estimators=250
+ MAE RFR: 0.7225521087265768
+ n_estimators=300
+ MAE RFR: 0.7217039832262548
+ n_estimators=350
+ MAE RFR: 0.7214978427007903
+ n_estimators=400
+ MAE RFR: 0.7213648852422958
+ n_estimators=450
+ MAE RFR: 0.7212828916536057
+ n_estimators=500
+ MAE RFR: 0.721569268724182
+ n_estimators=550
+ MAE RFR: 0.7215882649711295
+ n_estimators=600
+ MAE RFR: 0.7214801397926068
+ n_estimators=650
+ MAE RFR: 0.7214904678860316
+ n_estimators=700
+ MAE RFR: 0.7214458259942066
+ n_estimators=750
+ MAE RFR: 0.721321744044035
+ n_estimators=800
+ MAE RFR: 0.7212688151192291
+ n_estimators=850
+ MAE RFR: 0.7213455075369849
+ n_estimators=900
+ MAE RFR: 0.7212653189954917
+ n_estimators=950
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.6964341666751989
+ max_depth=22 n_estimators=15 max_features=10
+ MAE RFR: 0.6913562428739617
+ max_depth=22 n_estimators=30 max_features=10
+ MAE RFR: 0.690215436470215
+ max_depth=22 n_estimators=45 max_features=10
+ MAE RFR: 0.6890389917284392
+ max_depth=22 n_estimators=60 max_features=10
+ MAE RFR: 0.6884588756483264
+ max_depth=22 n_estimators=75 max_features=10
+ MAE RFR: 0.6882942032125826
+ max_depth=22 n_estimators=90 max_features=10
+ MAE RFR: 0.687546635550755
+ max_depth=22 n_estimators=105 max_features=10
+ MAE RFR: 0.6878537249642684
+ max_depth=22 n_estimators=120 max_features=10
+ MAE RFR: 0.6881581834016997
+ max_depth=22 n_estimators=135 max_features=10
+ MAE RFR: 0.6877512945639699
+ max_depth=22 n_estimators=150 max_features=10
+ MAE RFR: 0.6874917935193152
+ max_depth=22 n_estimators=165 max_features=10
+ MAE RFR: 0.6874447838885546
+ max_depth=22 n_estimators=180 max_features=10
+ MAE RFR: 0.687579327345827
+ max_depth=22 n_estimators=195 max_features=10
+ MAE RFR: 0.6875915905436374
+ max_depth=22 n_estimators=210 max_features=10
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.6885382326907701
+ max_depth=22 n_estimators=70 max_features=10
+ MAE RFR: 0.6880309412314308
+ max_depth=22 n_estimators=140 max_features=10
+ MAE RFR: 0.6875915905436374
+ max_depth=22 n_estimators=210 max_features=10
+ MAE RFR: 0.6875076914787907
+ max_depth=22 n_estimators=280 max_features=10
+ MAE RFR: 0.6871736454261284
+ max_depth=22 n_estimators=350 max_features=10
+ MAE RFR: 0.6869936844700828
+ max_depth=22 n_estimators=420 max_features=10
+ MAE RFR: 0.6869708183983338
+ max_depth=22 n_estimators=490 max_features=10
+ MAE RFR: 0.6869475016604507
+ max_depth=22 n_estimators=560 max_features=10
+ MAE RFR: 0.6868877906941081
+ max_depth=22 n_estimators=630 max_features=10
+ MAE RFR: 0.686816479379962
+ max_depth=22 n_estimators=700 max_features=10
+ MAE RFR: 0.686833784384213
+ max_depth=22 n_estimators=770 max_features=10
+ MAE RFR: 0.6868972190334585
+ max_depth=22 n_estimators=840 max_features=10
+ MAE RFR: 0.686769118170265
+ max_depth=22 n_estimators=910 max_features=10
+ MAE RFR: 0.6867040083157852
+ max_depth=22 n_estimators=980 max_features=10
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.686816479379962
+ max_depth=22 n_estimators=700 max_features=10
+ MAE RFR: 0.686835169560597
+ max_depth=22 n_estimators=800 max_features=10
+ MAE RFR: 0.6867650793553065
+ max_depth=22 n_estimators=900 max_features=10
+ MAE RFR: 0.68674226353577
+ max_depth=22 n_estimators=1000 max_features=10
+ MAE RFR: 0.6866323447110679
+ max_depth=22 n_estimators=1100 max_features=10
+ MAE RFR: 0.6866315865588324
+ max_depth=22 n_estimators=1200 max_features=10
+ MAE RFR: 0.6865767513461384
+ max_depth=22 n_estimators=1300 max_features=10
+ MAE RFR: 0.68655596974027
+ max_depth=22 n_estimators=1400 max_features=10
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.7722100427816235
+ max_depth=22 n_estimators=1000 max_features=1
+ MAE RFR: 0.7430883403386906
+ max_depth=22 n_estimators=1000 max_features=2
+ MAE RFR: 0.7235450315156334
+ max_depth=22 n_estimators=1000 max_features=3
+ MAE RFR: 0.7105380962161303
+ max_depth=22 n_estimators=1000 max_features=4
+ MAE RFR: 0.7025115239036248
+ max_depth=22 n_estimators=1000 max_features=5
+ MAE RFR: 0.6965795897214534
+ max_depth=22 n_estimators=1000 max_features=6
+ MAE RFR: 0.6928568769046671
+ max_depth=22 n_estimators=1000 max_features=7
+ MAE RFR: 0.6896195046697264
+ max_depth=22 n_estimators=1000 max_features=8
+ MAE RFR: 0.6882216813706036
+ max_depth=22 n_estimators=1000 max_features=9
+ MAE RFR: 0.68674226353577
+ max_depth=22 n_estimators=1000 max_features=10
+ MAE RFR: 0.6860900345533996
+ max_depth=22 n_estimators=1000 max_features=11
+ MAE RFR: 0.686173887006345
+ max_depth=22 n_estimators=1000 max_features=12
+ MAE RFR: 0.6861102264611828
+ max_depth=22 n_estimators=1000 max_features=13
+ MAE RFR: 0.685209869354548
+ max_depth=22 n_estimators=1000 max_features=14
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.7430883403386906
+ max_depth=22 n_estimators=1000 max_features=2
+ MAE RFR: 0.7105380962161303
+ max_depth=22 n_estimators=1000 max_features=4
+ MAE RFR: 0.6965795897214534
+ max_depth=22 n_estimators=1000 max_features=6
+ MAE RFR: 0.6896195046697263
+ max_depth=22 n_estimators=1000 max_features=8
+ MAE RFR: 0.68674226353577
+ max_depth=22 n_estimators=1000 max_features=10
+ MAE RFR: 0.686173887006345
+ max_depth=22 n_estimators=1000 max_features=12
+ MAE RFR: 0.685209869354548
+ max_depth=22 n_estimators=1000 max_features=14
+ MAE RFR: 0.685801930134709
+ max_depth=22 n_estimators=1000 max_features=16
+ MAE RFR: 0.6855640189582504
+ max_depth=22 n_estimators=1000 max_features=18
+ MAE RFR: 0.6865911555904834
+ max_depth=22 n_estimators=1000 max_features=20
+ MAE RFR: 0.6875284080054047
+ max_depth=22 n_estimators=1000 max_features=22
+ MAE RFR: 0.6880550033268458
+ max_depth=22 n_estimators=1000 max_features=24
+ MAE RFR: 0.6886339324156758
+ max_depth=22 n_estimators=1000 max_features=26
+ MAE RFR: 0.6898632942874371
+ max_depth=22 n_estimators=1000 max_features=28
+MIN_MOVIES = 10,  MIN_PEOPLE = 10 shuffle=False
+ MAE RFR: 0.7721096422332151
+ max_depth=4 n_estimators=700 max_features=12
+ MAE RFR: 0.7248728829969218
+ max_depth=8 n_estimators=700 max_features=12
+ MAE RFR: 0.7006281055346926
+ max_depth=12 n_estimators=700 max_features=12
+ MAE RFR: 0.6884672099926836
+ max_depth=16 n_estimators=700 max_features=12
+ MAE RFR: 0.6851655673990241
+ max_depth=20 n_estimators=700 max_features=12
+ MAE RFR: 0.6864356082900989
+ max_depth=24 n_estimators=700 max_features=12
+ MAE RFR: 0.6893854236928731
+ max_depth=28 n_estimators=700 max_features=12
+ MAE RFR: 0.6929737928501887
+ max_depth=32 n_estimators=700 max_features=12
+ MAE RFR: 0.6961068296159879
+ max_depth=36 n_estimators=700 max_features=12
+
+ MAE RR: 0.6928529563441527 alpha=0.1
+ MAE RR: 0.682564569220614 alpha=1.0
+ MAE RR: 0.6643696529307637 alpha=10.0
+ MAE LR: 0.7237254804714505 alphas:100 max_iter:100
+MAE LR: 0.6673735059537524 alphas:100 max_iter:100 normalized
+ MAE LR: 0.880719515774881 alphas:1 max_iter:10
+ MAE LR: 0.880719515774881 alphas:2 max_iter:10
+ MAE LR: 0.880719515774881 alphas:3 max_iter:10
+ MAE LR: 0.880719515774881 alphas:4 max_iter:10
+ MAE LR: 0.880719515774881 alphas:5 max_iter:10
+ MAE LR: 0.880719515774881 alphas:6 max_iter:10
+ MAE LR: 0.880719515774881 alphas:7 max_iter:10
+ MAE LR: 0.880719515774881 alphas:8 max_iter:10
+ MAE LR: 0.880719515774881 alphas:9 max_iter:10
+ MAE LR: 0.880719515774881 alphas:10 max_iter:10
+ MAE LR: 0.880719515774881 alphas:11 max_iter:10
+ MAE LR: 0.880719515774881 alphas:12 max_iter:10
+
+ MAE KNN: 1.06864779321259 n_neighbors=1 weights:uniform leaf_size:30
+ MAE KNN: 0.9199490065060665 n_neighbors=2 weights:uniform leaf_size:30
+ MAE KNN: 0.8620303616435144 n_neighbors=3 weights:uniform leaf_size:30
+ MAE KNN: 0.835567962018639 n_neighbors=4 weights:uniform leaf_size:30
+ MAE KNN: 0.8205837875857218 n_neighbors=5 weights:uniform leaf_size:30
+ MAE KNN: 0.8086190727389954 n_neighbors=6 weights:uniform leaf_size:30
+ MAE KNN: 0.8010248938682206 n_neighbors=7 weights:uniform leaf_size:30
+ MAE KNN: 0.7917421311763673 n_neighbors=8 weights:uniform leaf_size:30
+ MAE KNN: 0.7876169822011215 n_neighbors=9 weights:uniform leaf_size:30
+ MAE KNN: 0.7850729734482152 n_neighbors=10 weights:uniform leaf_size:30
+ MAE KNN: 0.7806800198219223 n_neighbors=11 weights:uniform leaf_size:30
+ MAE KNN: 0.7770338784361995 n_neighbors=12 weights:uniform leaf_size:30
+ MAE KNN: 1.06864779321259 n_neighbors=1 weights:uniform leaf_size:30
+ MAE KNN: 0.9199490065060665 n_neighbors=2 weights:uniform leaf_size:30
+ MAE KNN: 0.8620303616435144 n_neighbors=3 weights:uniform leaf_size:30
+ MAE KNN: 0.835567962018639 n_neighbors=4 weights:uniform leaf_size:30
+ MAE KNN: 0.8205837875857218 n_neighbors=5 weights:uniform leaf_size:30
+ MAE KNN: 0.8086190727389954 n_neighbors=6 weights:uniform leaf_size:30
+ MAE KNN: 0.8010248938682206 n_neighbors=7 weights:uniform leaf_size:30
+ MAE KNN: 0.7917421311763673 n_neighbors=8 weights:uniform leaf_size:30
+ MAE KNN: 0.7876169822011215 n_neighbors=9 weights:uniform leaf_size:30
+ MAE KNN: 0.7850729734482152 n_neighbors=10 weights:uniform leaf_size:30
+ MAE KNN: 0.7806800198219223 n_neighbors=11 weights:uniform leaf_size:30
+ MAE KNN: 0.7770338784361995 n_neighbors=12 weights:uniform leaf_size:30
+ MAE KNN: 0.8620303616435144 n_neighbors=3 weights: uniform p:2
+ MAE KNN: 0.8086190727389954 n_neighbors=6 weights: uniform p:2
+ MAE KNN: 0.7876169822011215 n_neighbors=9 weights: uniform p:2
+ MAE KNN: 0.7770338784361995 n_neighbors=12 weights: uniform p:2
+ MAE KNN: 0.773430631264287 n_neighbors=15 weights: uniform p:2
+ MAE KNN: 0.7718861731434267 n_neighbors=18 weights: uniform p:2
+ MAE KNN: 0.7715658938096075 n_neighbors=21 weights: uniform p:2
+ MAE KNN: 0.7703849422659867 n_neighbors=24 weights: uniform p:2
+ MAE KNN: 0.7707813141081998 n_neighbors=27 weights: uniform p:2
+ MAE KNN: 0.772823398393998 n_neighbors=30 weights: uniform p:2
+ MAE KNN: 0.7737604637903567 n_neighbors=33 weights: uniform p:2
+ MAE KNN: 0.8614314122998376 n_neighbors=3 weights: distance p:2
+ MAE KNN: 0.8074329824626352 n_neighbors=6 weights: distance p:2
+ MAE KNN: 0.7865111487247253 n_neighbors=9 weights: distance p:2
+ MAE KNN: 0.7760630994949079 n_neighbors=12 weights: distance p:2
+ MAE KNN: 0.7721085020833062 n_neighbors=15 weights: distance p:2
+ MAE KNN: 0.7701385600561976 n_neighbors=18 weights: distance p:2
+ MAE KNN: 0.7697172099541908 n_neighbors=21 weights: distance p:2
+ MAE KNN: 0.7684206321316137 n_neighbors=24 weights: distance p:2
+ MAE KNN: 0.7686938959822839 n_neighbors=27 weights: distance p:2
+ MAE KNN: 0.7703979704606657 n_neighbors=30 weights: distance p:2
+ MAE KNN: 0.7711992712091802 n_neighbors=33 weights: distance p:2
+ MAE KNN: 0.8491823457007209 n_neighbors=3 weights: uniform p:1
+ MAE KNN: 0.7942969345290427 n_neighbors=6 weights: uniform p:1
+ MAE KNN: 0.7724088076119026 n_neighbors=9 weights: uniform p:1
+ MAE KNN: 0.759530508176543 n_neighbors=12 weights: uniform p:1
+ MAE KNN: 0.7520555653244242 n_neighbors=15 weights: uniform p:1
+ MAE KNN: 0.7495721235566498 n_neighbors=18 weights: uniform p:1
+ MAE KNN: 0.748530901722391 n_neighbors=21 weights: uniform p:1
+ MAE KNN: 0.7463220209835296 n_neighbors=24 weights: uniform p:1
+ MAE KNN: 0.7449087913304548 n_neighbors=27 weights: uniform p:1
+ MAE KNN: 0.7465213059023504 n_neighbors=30 weights: uniform p:1
+ MAE KNN: 0.7464898679071353 n_neighbors=33 weights: uniform p:1
+ MAE KNN: 0.849459965497239 n_neighbors=3 weights: distance p:1
+ MAE KNN: 0.7939982186277519 n_neighbors=6 weights: distance p:1
+ MAE KNN: 0.772135311667844 n_neighbors=9 weights: distance p:1
+ MAE KNN: 0.7585882963032745 n_neighbors=12 weights: distance p:1
+ MAE KNN: 0.7512069793420999 n_neighbors=15 weights: distance p:1
+ MAE KNN: 0.7481970702816279 n_neighbors=18 weights: distance p:1
+ MAE KNN: 0.7465949709427169 n_neighbors=21 weights: distance p:1
+ MAE KNN: 0.7442348258008887 n_neighbors=24 weights: distance p:1
+ MAE KNN: 0.7430356838653601 n_neighbors=27 weights: distance p:1
+ MAE KNN: 0.7442806062690683 n_neighbors=30 weights: distance p:1
+ MAE KNN: 0.7439451393979348 n_neighbors=33 weights: distance p:1
+ MAE DTR: 0.8964802766543578
+ MAE DTR: 0.8801740812379109
+ MAE DTR: 0.8964802766543578
+ MAE DTR: 0.7962138204170737 max_depth: 2 criterion:mse depth:2 / leaves:4
+ MAE DTR: 0.7461952453656561 max_depth: 4 criterion:mse depth:4 / leaves:16
+ MAE DTR: 0.7260893135257998 max_depth: 6 criterion:mse depth:6 / leaves:59
+ MAE DTR: 0.7110910990940974 max_depth: 8 criterion:mse depth:8 / leaves:168
+ MAE DTR: 0.7041127592414346 max_depth: 10 criterion:mse depth:10 / leaves:390
+ MAE DTR: 0.7124494349122817 max_depth: 12 criterion:mse depth:12 / leaves:761
+ MAE DTR: 0.7127279390296377 max_depth: 14 criterion:mse depth:14 / leaves:1230
+ MAE DTR: 0.719704845243344 max_depth: 16 criterion:mse depth:16 / leaves:1799
+ MAE DTR: 0.7288883246397757 max_depth: 18 criterion:mse depth:18 / leaves:2409
+ MAE DTR: 0.731080766089725 max_depth: 20 criterion:mse depth:20 / leaves:3074
+ MAE DTR: 0.7415952066660467 max_depth: 22 criterion:mse depth:22 / leaves:3779
+ MAE DTR: 0.7962138204170737 max_depth: 2 criterion:mse depth:2 / leaves:4
+ MAE DTR: 0.7461952453656561 max_depth: 4 criterion:mse depth:4 / leaves:16
+ MAE DTR: 0.7260893135257998 max_depth: 6 criterion:mse depth:6 / leaves:59
+ MAE DTR: 0.7110910990940974 max_depth: 8 criterion:mse depth:8 / leaves:168
+ MAE DTR: 0.7041127592414346 max_depth: 10 criterion:mse depth:10 / leaves:390
+ MAE DTR: 0.7124494349122817 max_depth: 12 criterion:mse depth:12 / leaves:761
+ MAE DTR: 0.7127279390296377 max_depth: 14 criterion:mse depth:14 / leaves:1230
+ MAE DTR: 0.719704845243344 max_depth: 16 criterion:mse depth:16 / leaves:1799
+ MAE DTR: 0.7288883246397757 max_depth: 18 criterion:mse depth:18 / leaves:2409
+ MAE DTR: 0.731080766089725 max_depth: 20 criterion:mse depth:20 / leaves:3074
+ MAE DTR: 0.7415952066660467 max_depth: 22 criterion:mse depth:22 / leaves:3779
+ MAE DTR: 0.7260893135257998 max_depth: 6 criterion:mse depth:6 / leaves:59
+ MAE DTR: 0.7174919908921152 max_depth: 7 criterion:mse depth:7 / leaves:104
+ MAE DTR: 0.7110910990940974 max_depth: 8 criterion:mse depth:8 / leaves:168
+ MAE DTR: 0.7066007248567153 max_depth: 9 criterion:mse depth:9 / leaves:263
+ MAE DTR: 0.7041127592414346 max_depth: 10 criterion:mse depth:10 / leaves:390
+ MAE DTR: 0.7103076575854399 max_depth: 11 criterion:mse depth:11 / leaves:564
+ MAE DTR: 0.7124494349122817 max_depth: 12 criterion:mse depth:12 / leaves:761
+ MAE DTR: 0.7122386959551138 max_depth: 13 criterion:mse depth:13 / leaves:986
+ MAE DTR: 0.7127279390296377 max_depth: 14 criterion:mse depth:14 / leaves:1230
+ MAE DTR: 0.7158207774788167 max_depth: 15 criterion:mse depth:15 / leaves:1505
+ MAE DTR: 0.719704845243344 max_depth: 16 criterion:mse depth:16 / leaves:1799
+ MAE DTR: 0.7260893135257998 max_depth: 6 criterion:friedman_mse depth:6 / leaves:59
+ MAE DTR: 0.7174919908921152 max_depth: 7 criterion:friedman_mse depth:7 / leaves:104
+ MAE DTR: 0.7113548585454778 max_depth: 8 criterion:friedman_mse depth:8 / leaves:168
+ MAE DTR: 0.7068117324178196 max_depth: 9 criterion:friedman_mse depth:9 / leaves:263
+ MAE DTR: 0.7055370602788884 max_depth: 10 criterion:friedman_mse depth:10 / leaves:390
+ MAE DTR: 0.7100263141706341 max_depth: 11 criterion:friedman_mse depth:11 / leaves:564
+ MAE DTR: 0.7096843015211116 max_depth: 12 criterion:friedman_mse depth:12 / leaves:760
+ MAE DTR: 0.7137885187882198 max_depth: 13 criterion:friedman_mse depth:13 / leaves:987
+ MAE DTR: 0.7134905785906418 max_depth: 14 criterion:friedman_mse depth:14 / leaves:1230
+ MAE DTR: 0.7148601773316094 max_depth: 15 criterion:friedman_mse depth:15 / leaves:1505
+ MAE DTR: 0.7214766180648258 max_depth: 16 criterion:friedman_mse depth:16 / leaves:1801
+ MAE DTR: 0.7197819588535255 max_depth: 6 criterion:mae depth:6 / leaves:60
+ MAE DTR: 0.7145331457710569 max_depth: 7 criterion:mae depth:7 / leaves:107
+ MAE DTR: 0.7081853349745032 max_depth: 8 criterion:mae depth:8 / leaves:179
+ MAE DTR: 0.7044927026551785 max_depth: 9 criterion:mae depth:9 / leaves:277
+ MAE DTR: 0.703358537014243 max_depth: 10 criterion:mae depth:10 / leaves:397
+ MAE DTR: 0.7017232284156849 max_depth: 11 criterion:mae depth:11 / leaves:572
+ MAE DTR: 0.7060928433268859 max_depth: 12 criterion:mae depth:12 / leaves:770
+ MAE DTR: 0.7060312994548971 max_depth: 13 criterion:mae depth:13 / leaves:1006
+ MAE DTR: 0.708053455248813 max_depth: 14 criterion:mae depth:14 / leaves:1258
+ MAE DTR: 0.7130385088799016 max_depth: 15 criterion:mae depth:15 / leaves:1518
+ MAE DTR: 0.7198083347986637 max_depth: 16 criterion:mae depth:16 / leaves:1841
+ MAE DTR: 0.878938815549419 max_depth: 6 criterion:poisson depth:6 / leaves:11
+ MAE DTR: 0.878654908583824 max_depth: 7 criterion:poisson depth:7 / leaves:15
+ MAE DTR: 0.8784446919270328 max_depth: 8 criterion:poisson depth:8 / leaves:20
+ MAE DTR: 0.8780960512752999 max_depth: 9 criterion:poisson depth:9 / leaves:25
+ MAE DTR: 0.8778222912282748 max_depth: 10 criterion:poisson depth:10 / leaves:31
+ MAE DTR: 0.8773902856672812 max_depth: 11 criterion:poisson depth:11 / leaves:39
+ MAE DTR: 0.8773453173994543 max_depth: 12 criterion:poisson depth:12 / leaves:47
+ MAE DTR: 0.8772937139494329 max_depth: 13 criterion:poisson depth:13 / leaves:57
+ MAE DTR: 0.8776157770943336 max_depth: 14 criterion:poisson depth:14 / leaves:68
+ MAE DTR: 0.8783634817185955 max_depth: 15 criterion:poisson depth:15 / leaves:77
+ MAE DTR: 0.8759476880467154 max_depth: 16 criterion:poisson depth:16 / leaves:85
+ MAE DTR: 0.8773453173994543 max_depth: 12 criterion:poisson depth:12 / leaves:47
+ MAE DTR: 0.8734382498270781 max_depth: 24 criterion:poisson depth:24 / leaves:161
+ MAE DTR: 0.8675361326627984 max_depth: 36 criterion:poisson depth:36 / leaves:315
+ MAE DTR: 0.8684594980694781 max_depth: 48 criterion:poisson depth:48 / leaves:447
+ MAE DTR: 0.8670782587206697 max_depth: 60 criterion:poisson depth:60 / leaves:586
+ MAE DTR: 0.8681418368613382 max_depth: 72 criterion:poisson depth:72 / leaves:709
+ MAE DTR: 0.8639227451655348 max_depth: 84 criterion:poisson depth:84 / leaves:829
+ MAE DTR: 0.8424899291578087 max_depth: 96 criterion:poisson depth:96 / leaves:954
+ MAE DTR: 0.8456462920670819 max_depth: 108 criterion:poisson depth:108 / leaves:1082
+ MAE DTR: 0.8433674859242505 max_depth: 120 criterion:poisson depth:120 / leaves:1240
+ MAE DTR: 0.8434995533333227 max_depth: 132 criterion:poisson depth:132 / leaves:1388
+ MAE RFR: 0.7410088935935976 max_depth=4 n_estimators=100
+ MAE RFR: 0.7003965723862483 max_depth=8 n_estimators=100
+ MAE RFR: 0.6846769357384711 max_depth=12 n_estimators=100
+ MAE RFR: 0.6782797664154332 max_depth=16 n_estimators=100
+ MAE RFR: 0.6760906299225395 max_depth=20 n_estimators=100
+ MAE RFR: 0.6749642992655976 max_depth=26 n_estimators=100
+ MAE RFR: 0.6745909154741764 max_depth=27 n_estimators=100
+ MAE RFR: 0.6753232096460913 max_depth=24 n_estimators=100
+ MAE RFR: 0.6748021596843263 max_depth=28 n_estimators=100
+ MAE RFR: 0.6759261202236416 max_depth=32 n_estimators=100
+ MAE RFR: 0.676040936019666 max_depth=36 n_estimators=100
+ MAE RFR: 0.676263322119301 max_depth=40 n_estimators=100
+ MAE RFR: 0.6767662718344087 max_depth=44 n_estimators=100
+ MAE RFR: 0.6766461071510804 max_depth=27 n_estimators=25
+ MAE RFR: 0.6754891986506789 max_depth=27 n_estimators=50
+ MAE RFR: 0.6747897210508917 max_depth=27 n_estimators=69
+ MAE RFR: 0.6745956267424155 max_depth=27 n_estimators=73
+ MAE RFR: 0.6743714418226444 max_depth=27 n_estimators=75
+ MAE RFR: 0.6744044914246897 max_depth=27 n_estimators=77
+ MAE RFR: 0.6746017747986113 max_depth=27 n_estimators=85
+ MAE RFR: 0.6745909154741764 max_depth=27 n_estimators=100
+ MAE RFR: 0.6747352451979216 max_depth=27 n_estimators=125
+ MAE RFR: 0.6746690452369608 max_depth=27 n_estimators=150
+
+ MAE XGB: 0.6623188399212084
+ n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5
+
+ MAE XGB: 5.80196940390364 n_estimators=1000, learning_rate=0.0, early_stopping_rounds=5
+ MAE XGB: 0.6591293378645158 n_estimators=1000, learning_rate=0.05, early_stopping_rounds=5
+ MAE XGB: 0.6594915755419315 n_estimators=1000, learning_rate=0.1, early_stopping_rounds=5
+ MAE XGB: 0.6556102767526443 n_estimators=1000, learning_rate=0.15000000000000002, early_stopping_rounds=5

@@ -40,24 +40,54 @@ def genres_region_one_hot_encoder(df):
     return encoded
 
 
-def score_dataset_RFR(X_train, X_valid, y_train, y_valid):
-    from sklearn.ensemble import RandomForestRegressor
-    print("Random Forest Regressor started")
-    n_estimators = 1000
-    model = RandomForestRegressor(n_estimators=n_estimators, random_state=0)
-    model.fit(X_train, y_train)
-    preds = model.predict(X_valid)
-    print("MAE RFR: " + str(mean_absolute_error(y_valid, preds)))
-    print("n_estimators=" + str(n_estimators))
-    log.write("\n MAE RFR: " + str(mean_absolute_error(y_valid, preds)) +
-              "\n n_estimators=" + str(n_estimators))
-    check_importance(model, X_train)
+def add_people(movies_data):
+    print("started adding people")
+    principals_data = pd.read_csv('IMDB files/clean_principals_data.csv', header=0, low_memory=False, index_col=0)
+
+    # principals_data = principals_data.loc[principals_data['category'] == 'director']
+    count = principals_data.nconst.value_counts()
+    count = count[count.values >= MIN_PEOPLE]
+    principals_data = principals_data[
+        principals_data.nconst.isin(count.index)]  # Remove artists with less than MIN_PEOPLE
+    from sklearn.preprocessing import OneHotEncoder
+    OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
+    principals_encoded = pd.DataFrame(OH_encoder.fit_transform(principals_data[['nconst']]),
+                                      index=principals_data.index)
+    # OH_encoder.get_feature_names()
+    principals_encoded.columns = OH_encoder.get_feature_names()
+    principals_encoded = principals_encoded.reset_index().groupby('titleId').max()
+    # principals_encoded.drop_duplicates(subset=principals_data.columns[[0]], inplace=True)
+    movies_people_data = pd.merge(movies_data, principals_encoded, on="titleId", how="left")
+    imputer = SimpleImputer(missing_values=np.NaN, strategy='constant', fill_value=0.0)
+    imputed_movies_people_data = pd.DataFrame(imputer.fit_transform(movies_people_data))
+    imputed_movies_people_data.columns = movies_people_data.columns
+    imputed_movies_people_data.index = movies_people_data.index
+    imputed_movies_people_data.to_csv('IMDB files/imputed_movies_people_data.csv')
+    print("people added")
+    return imputed_movies_people_data
 
 
-def check_importance(model, X):
+def reset():
+    movies_data = pd.read_csv('IMDB files/clean_movies_data.csv', header=0, low_memory=False, index_col=1)
+    movies_data = movies_data.drop(movies_data.columns[[0]], axis=1)  # drop useless column (6 if akas)
+    #  missing_runtime = movies_data.loc[movies_data['runtimeMinutes'].isnull() | movies_data['genres'].isnull()]
+    #  print(missing_runtime.shape)
+    movies_data.dropna(how='any', subset=['runtimeMinutes', 'genres'], inplace=True)  # must replace \N first
+    # genres_vals = movies_data.genres.value_counts()
+    # print(genres_vals)
+
+    # pg_movies_data = movies_data.loc[movies_data['isAdult'] == 1]
+    # sorted = pg_movies_data.sort_values(by='averageRating', ascending=False)
+    # print(sorted.head(20))
+
+    add_people(genres_region_one_hot_encoder(movies_data))
+
+
+# INFORMATION GATHERING
+def check_importance(model, columns):
     importances = list(model.feature_importances_)
     # List of tuples with variable and importance
-    feature_importances = [(feature, round(importance, 4)) for feature, importance in zip(X.columns, importances)]
+    feature_importances = [(feature, round(importance, 4)) for feature, importance in zip(columns, importances)]
     # Sort the feature importances by most important first
     feature_importances = sorted(feature_importances, key=lambda x: x[1], reverse=True)
     # Print out the feature and importances
@@ -67,7 +97,7 @@ def check_importance(model, X):
     # Make a bar chart
     plt.bar(x_values, importances, orientation='vertical', color='r', edgecolor='k', linewidth=1.2)
     # Tick labels for x axis
-    plt.xticks(x_values, X.columns, rotation='vertical')
+    plt.xticks(x_values, columns, rotation='vertical')
     # Axis labels and title
     plt.ylabel('Importance')
     plt.xlabel('Variable')
@@ -75,66 +105,175 @@ def check_importance(model, X):
     plt.show()
 
 
-def score_dataset_XGB(X_train, X_valid, y_train, y_valid):
-    from xgboost import XGBRegressor
-    print("XGBRegressor started")
-    n_estimators = 1000
-    learning_rate = 0.05
-    n_jobs = 4
-    early_stopping_rounds = 5
-    my_model = XGBRegressor(n_estimators=n_estimators, learning_rate=learning_rate, n_jobs=n_jobs)
-    my_model.fit(X_train, y_train, early_stopping_rounds=early_stopping_rounds, eval_set=[(X_valid, y_valid)],
-                 verbose=False)
-    preds = my_model.predict(X_valid)
-    print("MAE XGB: " + str(mean_absolute_error(y_valid, preds)))
-    print(
-        "n_estimators=" + str(n_estimators) + ", learning_rate=" + str(learning_rate) + ", n_jobs=" + str(
-            n_jobs) + ", early_stopping_rounds=" + str(early_stopping_rounds))
-    log.write("\n MAE XGB: " + str(mean_absolute_error(y_valid, preds)) +
-              "\n n_estimators=" + str(n_estimators) + ", learning_rate=" + str(learning_rate) + ", n_jobs=" + str(
-        n_jobs) + ", early_stopping_rounds=" + str(early_stopping_rounds))
+def line_plot(x, mae, x_label):
+    plt.plot(x, mae)
+    plt.title('MAE Vs ' + x_label)
+    plt.xlabel(x_label)
+    plt.ylabel('MAE')
+    plt.show()
 
 
-def score_dataset_KNN(X_train, X_valid, y_train, y_valid):
-    from sklearn.neighbors import KNeighborsRegressor
-    print("KNNeighbor started")
-    n_neighbors = 5
-    knn_model = KNeighborsRegressor(n_neighbors=n_neighbors)
-    knn_model.fit(X_train, y_train)
-    preds = knn_model.predict(X_valid)
-    print("MAE KNN: " + str(mean_absolute_error(y_valid, preds)))
-    print("n_neighbors=" + str(n_neighbors))
-    log.write("\n MAE KNN: " + str(mean_absolute_error(y_valid, preds)) + "\n n_neighbors=" + str(n_neighbors))
+def lines_plot(x, mae, labels, x_label):
+    winsound.Beep(1000, 800)
+    winsound.Beep(900, 500)
+    for i in range(0, len(labels)):
+        plt.plot(x, mae[i], label=labels[i])
+    plt.title('MAE Vs ' + x_label)
+    plt.xlabel(x_label)
+    plt.ylabel('MAE')
+    plt.legend()
+    plt.show()
 
 
-def score_dataset_DTR(X_train, X_valid, y_train, y_valid):
-    from sklearn.tree import DecisionTreeRegressor
-    print("Decision Tree Regressor started")
-    model = DecisionTreeRegressor(random_state=0)
-    model.fit(X_train, y_train)
-    preds = model.predict(X_valid)
-    print("MAE DTR: " + str(mean_absolute_error(y_valid, preds)))
-    log.write("\n MAE DTR: " + str(mean_absolute_error(y_valid, preds)))
-
-
+# ---- ALGORITHMS ----
 def score_dataset_RR(X_train, X_valid, y_train, y_valid):
     from sklearn import linear_model
-    print("Ridge Regression started")
-    model = linear_model.RidgeCV()
-    model.fit(X_train, y_train)
-    preds = model.predict(X_valid)
-    print("MAE RR: " + str(mean_absolute_error(y_valid, preds)))
-    log.write("\n MAE RR: " + str(mean_absolute_error(y_valid, preds)))
+    print("Ridge Regression started")  # default: 0.66576509
+    maes = []
+    changes = []
+    for i in range(1, 13):
+        alphas = 10.1  # MAE RR: 0.6643688873294995 alpha=10.1
+        changes.append(alphas)
+        model = linear_model.RidgeCV(alphas=alphas)
+        model.fit(X_train, y_train)
+        preds = model.predict(X_valid)
+        mae = mean_absolute_error(y_valid, preds)
+        maes.append(mae)
+        print("MAE RR: " + str(mae) + " alpha=" + str(alphas))
+        log.write("\n MAE RR: " + str(mae) + " alpha=" + str(alphas))
+
+    line_plot(changes, maes, "alphas")
 
 
 def score_dataset_LR(X_train, X_valid, y_train, y_valid):
     from sklearn import linear_model
     print("Lasso Regression started")
-    model = linear_model.LassoCV()
-    model.fit(X_train, y_train)
-    preds = model.predict(X_valid)
-    print("MAE LR: " + str(mean_absolute_error(y_valid, preds)))
-    log.write("\n MAE LR: " + str(mean_absolute_error(y_valid, preds)))
+    maes = []
+    changes = []
+    for i in range(1, 13):
+        alphas = 1e3
+        max_iter = 10
+        changes.append(alphas)
+        model = linear_model.LassoCV(alphas=alphas, max_iter=max_iter, normalize=True)
+        model.fit(X_train, y_train)
+        preds = model.predict(X_valid)
+        mae = mean_absolute_error(y_valid, preds)
+        maes.append(mae)
+        print("MAE LR: " + str(mae) + " alphas:" + str(alphas) + " max_iter:" + str(max_iter))
+        log.write("\n MAE LR: " + str(mae) + " alphas:" + str(alphas) + " max_iter:" + str(max_iter))
+    line_plot(changes, maes, "n_alphas")
+
+
+def score_dataset_KNN(X_train, X_valid, y_train, y_valid):
+    from sklearn.neighbors import KNeighborsRegressor
+    print("KNNeighbor started")
+    maes_list = []
+    changes = []
+    weights = ['uniform', 'distance']
+    ps = [2, 1]
+    for p in ps:
+        for weight in weights:
+            maes = []
+            for i in range(1, 12):
+                n_neighbors = i * 3
+                changes.append(n_neighbors)
+                knn_model = KNeighborsRegressor(n_neighbors=n_neighbors, weights=weight, p=p)
+                knn_model.fit(X_train, y_train)
+                preds = knn_model.predict(X_valid)
+                mae = mean_absolute_error(y_valid, preds)
+                maes.append(maes)
+                print("MAE KNN: " + str(mae) + " n_neighbors=" + str(n_neighbors) + " weights: " + weight + " p:" + str(
+                    p))
+                log.write(
+                    "\n MAE KNN: " + str(mae) + " n_neighbors=" + str(
+                        n_neighbors) + " weights: " + weight + " p:" + str(p))
+            maes_list.append(maes)
+    labels = ["weight: uniform, p: Euclidean", "weight: distance, p: Euclidean", "weight: uniform, p: Manhattan",
+              "weight: distance, p: Manhattan"]
+    lines_plot(changes, maes_list, labels, "neighbors")
+
+
+def score_dataset_DTR(X_train, X_valid, y_train, y_valid):
+    from sklearn.tree import DecisionTreeRegressor
+    print("Decision Tree Regressor started")
+    maes_list = []
+    changes = []
+    criteria = [
+        # "mse", "friedman_mse", "mae",
+        "poisson"
+    ]
+    for criterion in criteria:
+        maes = []
+        for i in range(1, 12):
+            max_depth = i * 12
+            changes.append(max_depth)
+            model = DecisionTreeRegressor(random_state=0, criterion=criterion)
+            model.fit(X_train, y_train)
+            preds = model.predict(X_valid)
+            mae = mean_absolute_error(y_valid, preds)
+            maes.append(mae)
+            print(
+                "MAE DTR: " + str(mae) + " max_depth: " + str(max_depth) + " criterion:" + criterion + " depth:" + str(
+                    model.get_depth()) + " / leaves:" + str(model.get_n_leaves()))
+            log.write("\n MAE DTR: " + str(mae) + " max_depth: " + str(
+                max_depth) + " criterion:" + criterion + " depth:" + str(model.get_depth()) + " / leaves:" + str(
+                model.get_n_leaves()))
+        maes_list.append(maes)
+
+    lines_plot(changes, maes_list, criteria, "max_depth")
+
+
+def score_dataset_RFR(X_train, X_valid, y_train, y_valid):
+    from sklearn.ensemble import RandomForestRegressor
+    print("Random Forest Regressor started")
+    maes_list = []
+    changes = []
+    criteria = ["mse"]
+    first = True
+    for criterion in criteria:
+        print("criterion: " + criterion)
+        maes = []
+        for i in range(1, 7):
+            max_depth = 27  # 22
+            n_estimators = 85
+            if first:
+                changes.append(n_estimators)
+            model = RandomForestRegressor(n_estimators=n_estimators, random_state=0, n_jobs=-2, max_depth=max_depth,
+                                          criterion=criterion)
+            model.fit(X_train, y_train)
+            preds = model.predict(X_valid)
+            mae = mean_absolute_error(y_valid, preds)
+            maes.append(mae)
+            print("MAE RFR: " + str(mae) + " max_depth=" + str(max_depth) + " n_estimators=" + str(n_estimators))
+            log.write("\n MAE RFR: " + str(mae) + " max_depth=" + str(max_depth) + " n_estimators=" + str(n_estimators))
+        first = False
+        maes_list.append(maes)
+    lines_plot(changes, maes_list, criteria, "n_estimators")
+    # check_importance(model, X_train.columns)
+
+
+def score_dataset_XGB(X_train, X_valid, y_train, y_valid):
+    from xgboost import XGBRegressor
+    print("XGBRegressor started")
+    maes = []
+    changes = []
+    n_estimators = 1000
+    n_jobs = 4
+    early_stopping_rounds = 5
+    print("early_stopping_rounds=" + str(early_stopping_rounds))
+    for i in range(1, 5):
+        learning_rate = i * 0.02
+        changes.append(learning_rate)
+        my_model = XGBRegressor(n_estimators=n_estimators, learning_rate=learning_rate, n_jobs=n_jobs)
+        my_model.fit(X_train, y_train, early_stopping_rounds=early_stopping_rounds, eval_set=[(X_valid, y_valid)],
+                     verbose=False)
+        preds = my_model.predict(X_valid)
+        mae = mean_absolute_error(y_valid, preds)
+        print("MAE XGB: " + str(mae) + " n_estimators=" + str(my_model.n_estimators) + ", learning_rate=" + str(
+            learning_rate) + ", early_stopping_rounds=" + str(early_stopping_rounds))
+        log.write("\n MAE XGB: " + str(mae) + " n_estimators=" + str(my_model.n_estimators) + ", learning_rate=" + str(
+            learning_rate) + ", early_stopping_rounds=" + str(early_stopping_rounds))
+    line_plot(changes, maes, "learning_rate")
 
 
 def score_dataset_ANN(X_train, X_valid, y_train, y_valid):
@@ -166,7 +305,6 @@ def score_dataset_ANN(X_train, X_valid, y_train, y_valid):
 
 def get_scores(df):
     from sklearn.model_selection import train_test_split
-    SHUFFLE = False
     s = (df.dtypes == 'object')
     object_cols = list(s[s].index)
     print("Categorical variables:" + str(object_cols))
@@ -175,71 +313,26 @@ def get_scores(df):
     # for col in object_cols:
     #     df[col] = label_encoder.fit_transform(df[col])
 
-    print("MIN_MOVIES = " + str(MIN_MOVIES) + ",  MIN_PEOPLE = " + str(MIN_PEOPLE) + " shuffle=" + str(SHUFFLE))
-    log.write("\nMIN_MOVIES = " + str(MIN_MOVIES) + ",  MIN_PEOPLE = " + str(MIN_PEOPLE) + " shuffle=" + str(SHUFFLE))
+    print("MIN_MOVIES = " + str(MIN_MOVIES) + ",  MIN_PEOPLE = " + str(MIN_PEOPLE))
     y = df.averageRating
     X = df.drop(['averageRating'], axis=1)
 
-    X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0,
-                                                          shuffle=SHUFFLE)
+    X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size=0.8, test_size=0.2, random_state=0)
 
-    score_dataset_RFR(X_train, X_valid, y_train, y_valid)
-    # score_dataset_XGB(X_train, X_valid, y_train, y_valid)
+    # score_dataset_RR(X_train, X_valid, y_train, y_valid)
+    # score_dataset_LR(X_train, X_valid, y_train, y_valid)
     # score_dataset_KNN(X_train, X_valid, y_train, y_valid)
     # score_dataset_DTR(X_train, X_valid, y_train, y_valid)
-    # score_dataset_LR(X_train, X_valid, y_train, y_valid)
-    # score_dataset_RR(X_train, X_valid, y_train, y_valid)
+    # score_dataset_RFR(X_train, X_valid, y_train, y_valid)
+    score_dataset_XGB(X_train, X_valid, y_train, y_valid)
     # score_dataset_ANN(X_train, X_valid, y_train, y_valid)
-
-
-def add_people(movies_data):
-    print("started adding people")
-    principals_data = pd.read_csv('IMDB files/clean_principals_data.csv', header=0, low_memory=False, index_col=0)
-
-    # principals_data = principals_data.loc[principals_data['category'] == 'director']
-    count = principals_data.nconst.value_counts()
-    count = count[count.values >= MIN_PEOPLE]
-    principals_data = principals_data[
-        principals_data.nconst.isin(count.index)]
-    from sklearn.preprocessing import OneHotEncoder
-    OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
-    principals_encoded = pd.DataFrame(OH_encoder.fit_transform(principals_data[['nconst']]),
-                                      index=principals_data.index)
-    OH_encoder.get_feature_names()
-    principals_encoded.columns = OH_encoder.get_feature_names()
-    principals_encoded = principals_encoded.reset_index().groupby('titleId').max()
-    # principals_encoded.drop_duplicates(subset=principals_data.columns[[0]], inplace=True)
-    movies_people_data = pd.merge(movies_data, principals_encoded, on="titleId", how="left")
-    imputer = SimpleImputer(missing_values=np.NaN, strategy='constant', fill_value=0.0)
-    imputed_movies_people_data = pd.DataFrame(imputer.fit_transform(movies_people_data))
-    imputed_movies_people_data.columns = movies_people_data.columns
-    imputed_movies_people_data.index = movies_people_data.index
-    imputed_movies_people_data.to_csv('IMDB files/imputed_movies_people_data.csv')
-    print("people added")
-    return imputed_movies_people_data
-
-
-def reset():
-    movies_data = pd.read_csv('IMDB files/clean_movies_data.csv', header=0, low_memory=False, index_col=1)
-    movies_data = movies_data.drop(movies_data.columns[[0]], axis=1)  # drop useless column (6 if akas)
-    #  missing_runtime = movies_data.loc[movies_data['runtimeMinutes'].isnull() | movies_data['genres'].isnull()]
-    #  print(missing_runtime.shape)
-    movies_data.dropna(how='any', subset=['runtimeMinutes', 'genres'], inplace=True)  # must replace \N first
-    # genres_vals = movies_data.genres.value_counts()
-    # print(genres_vals)
-
-    # pg_movies_data = movies_data.loc[movies_data['isAdult'] == 1]
-    # sorted = pg_movies_data.sort_values(by='averageRating', ascending=False)
-    # print(sorted.head(20))
-
-    add_people(genres_region_one_hot_encoder(movies_data))
 
 
 # reset()
 # print(movies_data.isnull().sum())
-get_scores(pd.read_csv('IMDB files/encoded_movies_data.csv', header=0, low_memory=False, index_col=0))
+# get_scores(pd.read_csv('IMDB files/encoded_movies_data.csv', header=0, low_memory=False, index_col=0))
 
-# get_scores(pd.read_csv('IMDB files/imputed_movies_people_data.csv', header=0, low_memory=False, index_col=0))
+get_scores(pd.read_csv('IMDB files/imputed_movies_people_data.csv', header=0, low_memory=False, index_col=0))
 
 winsound.Beep(1000, 800)
 winsound.Beep(900, 500)
