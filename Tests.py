@@ -57,12 +57,18 @@ def cross_validation():
 
 def count_genres():
     movies_data = pd.read_csv('IMDB files/clean_movies_data.csv', header=0, low_memory=False, index_col=1)
-    counts = movies_data.region.value_counts()
-    counts = counts[counts.values >= 10]
-    print(counts.shape)
+    counts = movies_data.averageRating.value_counts()
+    counts = counts.sort_index(ascending=False)
+    print(counts)
+    counts.plot()
+    plt.title('Distribution of ratings')
+    plt.xlabel('Ratings')
+    plt.ylabel('Movies')
+    plt.xlim([1, 10])
+    plt.show()
 
 
-# count_genres()
+count_genres()
 
 
 def count_people():
@@ -77,17 +83,17 @@ def count_people():
 
 
 def plotknn():
-    maes = [[0.6766461071510804,
-             0.6754891986506789,
-             0.6747897210508917,
-             0.6745956267424155,
-             0.6743714418226444,
-             0.6744044914246897,
-             0.6746017747986113,
-             0.6745909154741764,
-             0.6747352451979216,
-             0.6746690452369608,
-                ],
+    maes = [[0.6591293378645158,
+             0.6591722427782032,
+             0.6594915755419315,
+             0.6587484916735978,
+             0.6556102767526443,
+             0.6565936593236331,
+             0.6603880000361789,
+             0.6607255396114328,
+             0.6632063058383942,
+             0.6613777518335284,
+             ],
             [0.7260893135257998, 0.7174919908921152, 0.7113548585454778, 0.7068117324178196, 0.7055370602788884,
              0.7100263141706341, 0.7096843015211116, 0.7137885187882198, 0.7134905785906418, 0.7148601773316094,
              0.7214766180648258],
@@ -98,28 +104,28 @@ def plotknn():
              0.8773902856672819, 0.8773453173994549, 0.8772937139494327, 0.8776157770943331, 0.8783634817185953,
              0.8759476880467158]]
 
-    x = [25,
-         50,
-         69,
-         73,
-         75,
-         77,
-         85,
-         100,
-         125,
-         150]
-    labels = ["mse", "friedman_mse", "mae", "poisson"]
+    x = [0.05,
+         0.06,
+         0.1,
+         0.12,
+         0.15,
+         0.18,
+         0.24,
+         0.3,
+         0.36,
+         0.42]
+    labels = []
 
     for i in range(0, 1):
-        plt.plot(x, maes[i], label=labels[i])
-    plt.title('MAE Vs ' + "n_estimators")
-    plt.xlabel("n_estimators")
+        plt.plot(x, maes[i])
+    plt.title('MAE Vs ' + "learning_rate")
+    plt.xlabel("learning_rate")
     plt.ylabel('MAE')
-    plt.legend()
+    # plt.legend()
     plt.show()
 
 
-plotknn()
+# plotknn()
 # count_people()
 
 # from sklearn.preprocessing import OneHotEncoder
@@ -128,6 +134,127 @@ plotknn()
 # OH_encoder.get_feature_names()
 # principals_encoded.columns = OH_encoder.get_feature_names()
 # print(principals_encoded.head())
+
+def plotbar():
+    x_values = ["Horror",
+                "Documentary",
+                "Drama",
+                "Animation",
+                "Action",
+                "runtimeMinu",
+                "Thriller",
+                "Sci-Fi",
+                "Biography",
+                "CH",
+                "XWW",
+                "Comedy",
+                "Crime",
+                "startYear",
+                "Musical",
+                "IR",
+                "Romance",
+                "XEU",
+                "HK",
+                "HR",
+                "TW",
+                "GB",
+                "RU",
+                "PE",
+                "uncommonReg",
+                "BD",
+                "TH",
+                "IE",
+                "IT",
+                "Adventure",
+                "Family",
+                "NZ",
+                "AT",
+                "IN",
+                "Fantasy",
+                "RS",
+                "US",
+                "History",
+                "CL",
+                "DE",
+                "UA",
+                "UZ",
+                "SI",
+                "XWG",
+                "CSHH",
+                "TR",
+                "LT",
+                "ES",
+                "NL",
+                "VN",
+                "Mystery",
+                "PK",
+                "Music",
+                "FR"]
+    importances = [0.29600000381469727,
+                   0.12039999663829803,
+                   0.05169999971985817,
+                   0.03790000081062317,
+                   0.027799999341368675,
+                   0.02319999970495701,
+                   0.01899999938905239,
+                   0.01489999983459711,
+                   0.01080000028014183,
+                   0.010599999688565731,
+                   0.010499999858438969,
+                   0.009499999694526196,
+                   0.009499999694526196,
+                   0.009399999864399433,
+                   0.008999999612569809,
+                   0.008899999782443047,
+                   0.007600000128149986,
+                   0.007499999832361937,
+                   0.007400000002235174,
+                   0.007300000172108412,
+                   0.007199999876320362,
+                   0.007000000216066837,
+                   0.007000000216066837,
+                   0.006899999920278788,
+                   0.006899999920278788,
+                   0.006800000090152025,
+                   0.006800000090152025,
+                   0.0066999997943639755,
+                   0.0066999997943639755,
+                   0.006599999964237213,
+                   0.006599999964237213,
+                   0.006500000134110451,
+                   0.006399999838322401,
+                   0.006099999882280827,
+                   0.006000000052154064,
+                   0.005900000222027302,
+                   0.005900000222027302,
+                   0.005799999926239252,
+                   0.005799999926239252,
+                   0.005799999926239252,
+                   0.005799999926239252,
+                   0.00559999980032444,
+                   0.005499999970197678,
+                   0.005400000140070915,
+                   0.005200000014156103,
+                   0.005200000014156103,
+                   0.005100000184029341,
+                   0.004999999888241291,
+                   0.004999999888241291,
+                   0.004999999888241291,
+                   0.004900000058114529,
+                   0.004800000227987766,
+                   0.004699999932199717,
+                   0.004600000102072954]
+    plt.bar(x_values, importances, orientation='vertical', color='r', edgecolor='k', linewidth=1.2)
+    # Tick labels for x axis
+    plt.xticks(x_values, x_values, rotation='vertical')
+    # Axis labels and title
+    plt.ylabel('Importance')
+    plt.xlabel('Variable')
+    plt.title('Variable Importances')
+    plt.show()
+
+
+# plotbar()
 
 
 #  year_data = year_data.sort_values(year_data.columns[0]).to_csv('IMDB files/startYear.csv')

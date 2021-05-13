@@ -436,7 +436,144 @@ MAE LR: 0.6673735059537524 alphas:100 max_iter:100 normalized
  MAE XGB: 0.6623188399212084
  n_estimators=1000, learning_rate=0.05, n_jobs=4, early_stopping_rounds=5
 
- MAE XGB: 5.80196940390364 n_estimators=1000, learning_rate=0.0, early_stopping_rounds=5
  MAE XGB: 0.6591293378645158 n_estimators=1000, learning_rate=0.05, early_stopping_rounds=5
+ MAE XGB: 0.6591722427782032 n_estimators=1000, learning_rate=0.06, early_stopping_rounds=5
  MAE XGB: 0.6594915755419315 n_estimators=1000, learning_rate=0.1, early_stopping_rounds=5
- MAE XGB: 0.6556102767526443 n_estimators=1000, learning_rate=0.15000000000000002, early_stopping_rounds=5
+ MAE XGB: 0.6587484916735978 n_estimators=1000, learning_rate=0.12, early_stopping_rounds=5
+ MAE XGB: 0.6556102767526443 n_estimators=1000, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6565936593236331 n_estimators=1000, learning_rate=0.18, early_stopping_rounds=5
+ MAE XGB: 0.6603880000361789 n_estimators=1000, learning_rate=0.24, early_stopping_rounds=5
+ MAE XGB: 0.6607255396114328 n_estimators=1000, learning_rate=0.3, early_stopping_rounds=5
+ MAE XGB: 0.6632063058383942 n_estimators=1000, learning_rate=0.36, early_stopping_rounds=5
+ MAE XGB: 0.6613777518335284 n_estimators=1000, learning_rate=0.42, early_stopping_rounds=5
+ MAE XGB: 0.6637537503716228 n_estimators=1000, learning_rate=0.48, early_stopping_rounds=5
+ MAE XGB: 0.6672163948476975 n_estimators=1000, learning_rate=0.54, early_stopping_rounds=5
+ MAE XGB: 0.6615524079021133 n_estimators=1000, learning_rate=0.46, early_stopping_rounds=5
+ MAE XGB: 0.6661332941315223 n_estimators=1000, learning_rate=0.52, early_stopping_rounds=5
+ MAE XGB: 0.6662040433922237 n_estimators=1000, learning_rate=0.5800000000000001, early_stopping_rounds=5
+ MAE XGB: 0.6694230356303632 n_estimators=1000, learning_rate=0.64, early_stopping_rounds=5
+ MAE XGB: 0.672232956565158 n_estimators=1000, learning_rate=0.7, early_stopping_rounds=5
+ MAE XGB: 0.6767750992094965 n_estimators=1000, learning_rate=0.76, early_stopping_rounds=5
+ MAE XGB: 0.684294638995108 n_estimators=1000, learning_rate=0.8200000000000001, early_stopping_rounds=5
+ MAE XGB: 0.6854193517062122 n_estimators=1000, learning_rate=0.88, early_stopping_rounds=5
+ MAE XGB: 0.6922587443597081 n_estimators=1000, learning_rate=0.9400000000000001, early_stopping_rounds=5
+
+ Epoch 49/100
+ 711/711 [==============================] - 1s 2ms/step - loss: 0.6282 - accuracy: 0.0000e+00
+         loss  accuracy  epoch
+ 44  0.630082       0.0     44
+ 45  0.630717       0.0     45
+ 46  0.637252       0.0     46
+ 47  0.634155       0.0     47
+ 48  0.630264       0.0     48
+ MAE ANN: 0.7382880606466006
+  epochs=100
+
+  Epoch 27/100
+  711/711 [==============================] - 1s 2ms/step - loss: 0.7889 - accuracy: 0.0000e+00
+          loss  accuracy  epoch
+  22  0.806750       0.0     22
+  23  0.793115       0.0     23
+  24  0.800123       0.0     24
+  25  0.788699       0.0     25
+  26  0.794801       0.0     26
+  MAE ANN: 0.6859255220803264
+   epochs=100 / loss:mean_squared_error
+
+ Epoch 51/100
+ 711/711 [==============================] - 1s 2ms/step - loss: 0.7284 - accuracy: 0.0000e+00
+         loss  accuracy  epoch
+ 46  0.738215       0.0     46
+ 47  0.729681       0.0     47
+ 48  0.722400       0.0     48
+ 49  0.727583       0.0     49
+ 50  0.719041       0.0     50
+ MAE ANN: 0.6775325131286358
+  epochs=100 / loss:mean_squared_error
+
+Epoch 36/100
+711/711 [==============================] - 1s 2ms/step - loss: 0.7437 - accuracy: 0.0000e+00
+        loss  accuracy  epoch
+31  0.755719       0.0     31
+32  0.768207       0.0     32
+33  0.753500       0.0     33
+34  0.754542       0.0     34
+35  0.752374       0.0     35
+MAE ANN: 0.6821511059837012
+ epochs=100 / loss:mean_squared_error
+
+Action	Adventure	Animation	Biography	Comedy	Crime	Documentary	Drama	Family	Fantasy	History	Horror	Music	Musical	Mystery	Romance	Sci-Fi	Sport	Thriller	War	Western
+12138	6098	2222	3240	25848	9403	7635	41328	3743	3489	2472	9228	2150	1037	4493	11253	3285	1344	11139	1495	578
+
+Ridge	Lasso	KNN	DTR	RFR	XGB	ANN
+0.6643	0.6674	0.7449	0.7017	0.6744	0.6556	0.6775
+
+
+ MAE XGB: 0.6556102767526443 n_estimators=1000, learning_rate=0.15, early_stopping_rounds=5
+
+ Variable: Horror               Importance: 0.29600000381469727
+ Variable: Documentary          Importance: 0.12039999663829803
+ Variable: Drama                Importance: 0.05169999971985817
+ Variable: Animation            Importance: 0.03790000081062317
+ Variable: Action               Importance: 0.027799999341368675
+ Variable: runtimeMinutes       Importance: 0.02319999970495701
+ Variable: Thriller             Importance: 0.01899999938905239
+ Variable: Sci-Fi               Importance: 0.01489999983459711
+ Variable: Biography            Importance: 0.01080000028014183
+ Variable: CH                   Importance: 0.010599999688565731
+ Variable: XWW                  Importance: 0.010499999858438969
+ Variable: Comedy               Importance: 0.009499999694526196
+ Variable: Crime                Importance: 0.009499999694526196
+ Variable: startYear            Importance: 0.009399999864399433
+ Variable: Musical              Importance: 0.008999999612569809
+ Variable: IR                   Importance: 0.008899999782443047
+ Variable: Romance              Importance: 0.007600000128149986
+ Variable: XEU                  Importance: 0.007499999832361937
+ Variable: HK                   Importance: 0.007400000002235174
+ Variable: HR                   Importance: 0.007300000172108412
+ Variable: TW                   Importance: 0.007199999876320362
+ Variable: GB                   Importance: 0.007000000216066837
+ Variable: RU                   Importance: 0.007000000216066837
+ Variable: PE                   Importance: 0.006899999920278788
+ Variable: uncommonRegion       Importance: 0.006899999920278788
+ Variable: BD                   Importance: 0.006800000090152025
+ Variable: TH                   Importance: 0.006800000090152025
+ Variable: IE                   Importance: 0.0066999997943639755
+ Variable: IT                   Importance: 0.0066999997943639755
+ Variable: Adventure            Importance: 0.006599999964237213
+ Variable: Family               Importance: 0.006599999964237213
+ Variable: NZ                   Importance: 0.006500000134110451
+ Variable: AT                   Importance: 0.006399999838322401
+ Variable: IN                   Importance: 0.006099999882280827
+ Variable: Fantasy              Importance: 0.006000000052154064
+ Variable: RS                   Importance: 0.005900000222027302
+ Variable: US                   Importance: 0.005900000222027302
+ Variable: History              Importance: 0.005799999926239252
+ Variable: CL                   Importance: 0.005799999926239252
+ Variable: DE                   Importance: 0.005799999926239252
+ Variable: UA                   Importance: 0.005799999926239252
+ Variable: UZ                   Importance: 0.00559999980032444
+ Variable: SI                   Importance: 0.005499999970197678
+ Variable: XWG                  Importance: 0.005400000140070915
+ Variable: CSHH                 Importance: 0.005200000014156103
+ Variable: TR                   Importance: 0.005200000014156103
+ Variable: LT                   Importance: 0.005100000184029341
+ Variable: ES                   Importance: 0.004999999888241291
+ Variable: NL                   Importance: 0.004999999888241291
+ Variable: VN                   Importance: 0.004999999888241291
+ Variable: Mystery              Importance: 0.004900000058114529
+ Variable: PK                   Importance: 0.004800000227987766
+ Variable: Music                Importance: 0.004699999932199717
+ Variable: FR                   Importance: 0.004600000102072954
+
+
+ MAE XGB: 0.6901822596751723 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6556102767526443 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6660741111917159 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.669666088733048 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6664708976862008 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6663015061040078 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6663015061040078 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6598243881408037 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.7043164693604077 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5
+ MAE XGB: 0.6598243881408037 n_estimators=800, learning_rate=0.15, early_stopping_rounds=5

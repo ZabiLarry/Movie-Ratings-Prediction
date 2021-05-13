@@ -15,7 +15,9 @@ pd.set_option('display.width', 225)
 log = open("log.txt", "a")
 MIN_MOVIES = 10
 MIN_PEOPLE = 10
-
+folder = "New IMDB files"
+# folder = "IMDB files"
+print("have you NaNed?")
 
 def genres_region_one_hot_encoder(df):
     from sklearn.preprocessing import MultiLabelBinarizer
@@ -42,7 +44,7 @@ def genres_region_one_hot_encoder(df):
 
 def add_people(movies_data):
     print("started adding people")
-    principals_data = pd.read_csv('IMDB files/clean_principals_data.csv', header=0, low_memory=False, index_col=0)
+    principals_data = pd.read_csv(folder + '/clean_principals_data.csv', header=0, low_memory=False, index_col=0)
 
     # principals_data = principals_data.loc[principals_data['category'] == 'director']
     count = principals_data.nconst.value_counts()
@@ -62,13 +64,13 @@ def add_people(movies_data):
     imputed_movies_people_data = pd.DataFrame(imputer.fit_transform(movies_people_data))
     imputed_movies_people_data.columns = movies_people_data.columns
     imputed_movies_people_data.index = movies_people_data.index
-    imputed_movies_people_data.to_csv('IMDB files/imputed_movies_people_data.csv')
+    imputed_movies_people_data.to_csv(folder + '/imputed_movies_people_data.csv')
     print("people added")
     return imputed_movies_people_data
 
 
 def reset():
-    movies_data = pd.read_csv('IMDB files/clean_movies_data.csv', header=0, low_memory=False, index_col=1)
+    movies_data = pd.read_csv(folder + '/clean_movies_data.csv', header=0, low_memory=False, index_col=1)
     movies_data = movies_data.drop(movies_data.columns[[0]], axis=1)  # drop useless column (6 if akas)
     #  missing_runtime = movies_data.loc[movies_data['runtimeMinutes'].isnull() | movies_data['genres'].isnull()]
     #  print(missing_runtime.shape)
@@ -95,6 +97,7 @@ def check_importance(model, columns):
     # list of x locations for plotting
     x_values = list(range(len(importances)))
     # Make a bar chart
+    beep()
     plt.bar(x_values, importances, orientation='vertical', color='r', edgecolor='k', linewidth=1.2)
     # Tick labels for x axis
     plt.xticks(x_values, columns, rotation='vertical')
@@ -105,7 +108,13 @@ def check_importance(model, columns):
     plt.show()
 
 
+def beep():
+    winsound.Beep(1000, 800)
+    winsound.Beep(900, 500)
+
+
 def line_plot(x, mae, x_label):
+    beep()
     plt.plot(x, mae)
     plt.title('MAE Vs ' + x_label)
     plt.xlabel(x_label)
@@ -114,8 +123,7 @@ def line_plot(x, mae, x_label):
 
 
 def lines_plot(x, mae, labels, x_label):
-    winsound.Beep(1000, 800)
-    winsound.Beep(900, 500)
+    beep()
     for i in range(0, len(labels)):
         plt.plot(x, mae[i], label=labels[i])
     plt.title('MAE Vs ' + x_label)
@@ -254,26 +262,62 @@ def score_dataset_RFR(X_train, X_valid, y_train, y_valid):
 
 def score_dataset_XGB(X_train, X_valid, y_train, y_valid):
     from xgboost import XGBRegressor
+    import pickle
     print("XGBRegressor started")
     maes = []
     changes = []
-    n_estimators = 1000
+    n_estimators = 800
     n_jobs = 4
     early_stopping_rounds = 5
     print("early_stopping_rounds=" + str(early_stopping_rounds))
-    for i in range(1, 5):
-        learning_rate = i * 0.02
+    for i in range(1, 2):
+        learning_rate = .15
         changes.append(learning_rate)
         my_model = XGBRegressor(n_estimators=n_estimators, learning_rate=learning_rate, n_jobs=n_jobs)
         my_model.fit(X_train, y_train, early_stopping_rounds=early_stopping_rounds, eval_set=[(X_valid, y_valid)],
                      verbose=False)
         preds = my_model.predict(X_valid)
         mae = mean_absolute_error(y_valid, preds)
+        maes.append(mae)
         print("MAE XGB: " + str(mae) + " n_estimators=" + str(my_model.n_estimators) + ", learning_rate=" + str(
             learning_rate) + ", early_stopping_rounds=" + str(early_stopping_rounds))
         log.write("\n MAE XGB: " + str(mae) + " n_estimators=" + str(my_model.n_estimators) + ", learning_rate=" + str(
             learning_rate) + ", early_stopping_rounds=" + str(early_stopping_rounds))
-    line_plot(changes, maes, "learning_rate")
+        check_importance(my_model, X_train.columns)
+        pickle_name = "XGBoost Model"
+        pickle.dump(my_model, open(pickle_name, 'wb'))
+        print("pickle: " + pickle_name)
+    # line_plot(changes, maes, "learning_rate")
+
+
+def score_XGB_hyper(X_train, X_valid, y_train, y_valid):
+    print("Hyper X started")
+    from xgboost import XGBRegressor
+    # from hyperopt import hp
+    from sklearn.model_selection import GridSearchCV
+    param_tuning = {
+        'learning_rate': [0.1, 0.15],
+        'max_depth': [3, 5, 7, 10],
+        'min_child_weight': [1, 3, 5],
+        'subsample': [0.5, 0.7],
+        'colsample_bytree': [0.5, 0.7],
+        'n_estimators': [200, 500],
+        'objective': ['reg:squarederror']
+    }
+
+    xgb_model = XGBRegressor()
+
+    gsearch = GridSearchCV(estimator=xgb_model,
+                           param_grid=param_tuning,
+                           scoring='neg_mean_absolute_error',  # MAE
+                           # scoring = 'neg_mean_squared_error',  #MSE
+                           cv=5,
+                           n_jobs=-2,
+                           verbose=1)
+
+    gsearch.fit(X_train, y_train)
+
+    print(gsearch.best_params_)
 
 
 def score_dataset_ANN(X_train, X_valid, y_train, y_valid):
@@ -282,15 +326,17 @@ def score_dataset_ANN(X_train, X_valid, y_train, y_valid):
     print("Artificial Neural Network started")
     epochs = 100
     patience = 5
+    loss = 'mean_squared_error'
     callback = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=patience)
     model = keras.Sequential([
-        keras.layers.Dense(64, activation='relu', input_shape=[len(X_train.keys())]),  # input layer
-        keras.layers.Dense(64, activation='relu'),  # hidden layer (1)
-        keras.layers.Dense(64, activation='relu'),  # hidden layer (2)
+        keras.layers.Dense(32, activation='relu', input_shape=[len(X_train.keys())]),  # input layer
+        keras.layers.Dense(32, activation='relu'),  # hidden layer (1)
+        keras.layers.Dense(32, activation='relu'),  # hidden layer (2)
+        keras.layers.Dense(32, activation='relu'),  # hidden layer (3)
         keras.layers.Dense(1)  # output layer
     ])
     model.compile(optimizer='adam',
-                  loss='mean_absolute_error',
+                  loss=loss,
                   metrics=['accuracy'])
     history = model.fit(X_train, y_train, epochs=epochs, callbacks=[callback])
     hist = pd.DataFrame(history.history)
@@ -298,7 +344,7 @@ def score_dataset_ANN(X_train, X_valid, y_train, y_valid):
     print(hist.tail())
     preds = model.predict(X_valid)
     print("MAE ANN: " + str(mean_absolute_error(y_valid, preds)))
-    print(" epochs=" + str(epochs))
+    print(" epochs=" + str(epochs) + " / loss:" + loss)
     log.write("\n MAE ANN: " + str(mean_absolute_error(y_valid, preds)) +
               "\n epochs=" + str(epochs))
 
@@ -325,14 +371,14 @@ def get_scores(df):
     # score_dataset_DTR(X_train, X_valid, y_train, y_valid)
     # score_dataset_RFR(X_train, X_valid, y_train, y_valid)
     score_dataset_XGB(X_train, X_valid, y_train, y_valid)
+    # score_XGB_hyper(X_train, X_valid, y_train, y_valid)
     # score_dataset_ANN(X_train, X_valid, y_train, y_valid)
 
 
-# reset()
+reset()
 # print(movies_data.isnull().sum())
-# get_scores(pd.read_csv('IMDB files/encoded_movies_data.csv', header=0, low_memory=False, index_col=0))
+# get_scores(pd.read_csv(folder + '/encoded_movies_data.csv', header=0, low_memory=False, index_col=0))
 
-get_scores(pd.read_csv('IMDB files/imputed_movies_people_data.csv', header=0, low_memory=False, index_col=0))
+# get_scores(pd.read_csv(folder + '/imputed_movies_people_data.csv', header=0, low_memory=False, index_col=0))
 
-winsound.Beep(1000, 800)
-winsound.Beep(900, 500)
+beep()
